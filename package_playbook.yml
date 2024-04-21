@@ -1,0 +1,7 @@
+---
+- name: install packages on managed nodes
+  hosts: managed_nodes
+  become: true
+  roles:
+    - common
+

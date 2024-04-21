@@ -1,0 +1,20 @@
+common_packages:
+  - curl
+  - lsof
+  - mc
+  - nano
+  - tar
+  - unzip
+  - vim
+  - zip
+collectd_additional_plugin_list: 
+  - collectd-write_prometheus
+collectd_plugin_list: 
+- df
+- processes 
+- protocols 
+- swap
+- tcpconns 
+- uptime
+- users
+- vmem

@@ -1,0 +1,28 @@
+---
+- name: Print inet information
+  hosts: localhost
+  connection: ssh
+  tasks:
+    - name: Print network interfaces
+      debug:
+        msg: "hostname: {{ansible_hostname}} address :{{ansible_default_ipv4.address}} interface: {{ansible_default_ipv4.interface}}"
+
+- name: Hello World
+  hosts: localhost
+  tasks: 
+    - name: Print with debug
+      debug:
+        msg: "hello, World!"
+    - name: Print with Shell
+      shell: "echo 'Hello, World!'"
+
+- name: Ansible system info
+  hosts: control
+  tasks:
+    - name: print using facts 
+      debug:
+        msg:
+          - "Distribution: {{ansible_distribution}}"
+          - "FQDN: {{ansible_fqdn}}"
+          - "IP address: {{ansible_default_ipv4.address}}"
+

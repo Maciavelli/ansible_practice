@@ -1,0 +1,5 @@
+---
+collectd_additional_plugins_list: []
+collectd_prometheus_port: 9103
+collectd_restart_required: true
+collectd_remove: false

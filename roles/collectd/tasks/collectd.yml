@@ -1,0 +1,34 @@
+---
+- name: install collectd
+  package:
+    name: "{{ item }}"
+    state: latest
+  notify:
+    - restart collectd
+  loop:
+    - "collectd"
+    - "{{ collectd_additional_plugins_list }}"
+
+- name:
+  template:
+    src: collectd-prometheus.conf.j2
+    dest: /etc/collectd/prometheus.conf
+    mode: 0644
+  notify:
+    - restart collectd
+
+- name: start collectd
+  service:
+    state: started
+    name: "collectd"
+    enabled: yes
+    daemon_reload: yes
+
+- name: Add include directive to collectd.conf
+  lineinfile:
+    path: /etc/collectd/collectd.conf
+    line: 'Include "/etc/collectd/prometheus.conf"'
+    insertafter: EOF
+  notify: restart collectd
+  when: collectd_restart_required | bool
+

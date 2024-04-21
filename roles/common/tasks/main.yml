@@ -1,0 +1,5 @@
+---
+- name: install packages
+  include_tasks: packages.yml
+- name: disable apparmor
+  include_tasks: apparmor.yml

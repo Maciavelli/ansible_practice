@@ -1,0 +1,12 @@
+---
+- name: Stop AppArmor service
+  service:
+    name: apparmor
+    state: stopped
+- name: Disable AppArmor service
+  service:
+    name: apparmor
+    enabled: no
+  notify: reboot
+  when: common_apparmor_disable|bool
+

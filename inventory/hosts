@@ -1,0 +1,5 @@
+[managed_nodes]
+node1
+node2
+[control]
+control ansible_connection=local
